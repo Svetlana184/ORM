@@ -141,28 +141,89 @@
 
 //ДЕЛЕГАТЫ ACTION, PREDICATE, FUNC
 
-//action
-void Add(int x, int y) => Console.WriteLine($"{x}+{y}={x+y}");
-void Sub(int x, int y) => Console.WriteLine($"{x}-{y}={x - y}");
-void Mult(int x, int y) => Console.WriteLine($"{x}*{y}={x * y}");
+////action
+//void Add(int x, int y) => Console.WriteLine($"{x}+{y}={x+y}");
+//void Sub(int x, int y) => Console.WriteLine($"{x}-{y}={x - y}");
+//void Mult(int x, int y) => Console.WriteLine($"{x}*{y}={x * y}");
 
-void DoOperation(int a, int b, Action<int, int> op)=> op(a, b);
+//void DoOperation(int a, int b, Action<int, int> op)=> op(a, b);
 
-DoOperation(16, 15, Add);
-DoOperation(16, 15, Sub);
-DoOperation(16, 15, Mult);
+//DoOperation(16, 15, Add);
+//DoOperation(16, 15, Sub);
+//DoOperation(16, 15, Mult);
+//Console.WriteLine();
+
+////Predicate
+//Predicate<int> isPositive = (int x) => x > 0;
+//Console.WriteLine(isPositive(6));
+//Console.WriteLine(isPositive(-6));
+//Console.WriteLine();
+
+////Func
+//int Square(int n) => n * n;
+//int Double(int n) => n + n;
+
+//int DoOperationFunc(int n, Func<int, int> op) => op(n);
+//Console.WriteLine(DoOperationFunc(6, Square));
+//Console.WriteLine(DoOperationFunc(6, Double));
+
+
+
+
+
+
+
+
+
+//АНОНИМНЫЕ МЕТОДЫ - обеспечивают более простой и компактный способ определения простых делегатов
+/*
+ * анонимный метод - выражение типа "кусок кода", которое может быть присвоено переменной-делегату
+ * 
+ */
+//MessageHandler handler = delegate (string mes)
+//{
+//    Console.WriteLine(mes);
+//};
+//static void ShowMessage(string mes, MessageHandler handler)
+//{
+//    handler(mes);
+//}
+//handler("Hello, world!");
+//ShowMessage("Hi!", delegate(string mes)
+//{
+//    Console.WriteLine(mes);
+//});
+//delegate void MessageHandler(string message);
+
+
+
+
+//ЛЯМБДА-ВЫРАЖЕНИЯ - упрощенная запись анонимных методов
+
+
+Message handler = () => Console.WriteLine("hello");
+handler();
+handler();
 Console.WriteLine();
-
-//Predicate
-Predicate<int> isPositive = (int x) => x > 0;
-Console.WriteLine(isPositive(6));
-Console.WriteLine(isPositive(-6));
+Message mes = () =>
+{
+    Console.WriteLine("hello");
+    Console.WriteLine("Hiiii");
+};
+mes();
 Console.WriteLine();
+Operation sum = (x, y) => Console.WriteLine($"{x}+{y}={x + y}");
+sum(9, 0);
+sum(10, 1);
+Console.WriteLine();
+ShowMessage message = mes => Console.WriteLine(mes);
+message("rrrr");
+Console.WriteLine();
+var welcome = (string m) => Console.WriteLine(m);
+welcome("mmm");
+delegate void Operation(int x, int y);
+delegate void Message();
+delegate void ShowMessage(string str);
 
-//Func
-int Square(int n) => n * n;
-int Double(int n) => n + n;
 
-int DoOperationFunc(int n, Func<int, int> op) => op(n);
-Console.WriteLine(DoOperationFunc(6, Square));
-Console.WriteLine(DoOperationFunc(6, Double));
+
