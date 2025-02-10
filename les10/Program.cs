@@ -201,29 +201,50 @@
 //ЛЯМБДА-ВЫРАЖЕНИЯ - упрощенная запись анонимных методов
 
 
-Message handler = () => Console.WriteLine("hello");
-handler();
-handler();
-Console.WriteLine();
-Message mes = () =>
+//Message handler = () => Console.WriteLine("hello");
+//handler();
+//handler();
+//Console.WriteLine();
+//Message mes = () =>
+//{
+//    Console.WriteLine("hello");
+//    Console.WriteLine("Hiiii");
+//};
+//mes();
+//Console.WriteLine();
+//Operation sum = (x, y) => Console.WriteLine($"{x}+{y}={x + y}");
+//sum(9, 0);
+//sum(10, 1);
+//Console.WriteLine();
+//ShowMessage message = mes => Console.WriteLine(mes);
+//message("rrrr");
+//Console.WriteLine();
+//var welcome = (string m) => Console.WriteLine(m);
+//welcome("mmm");
+//Console.WriteLine();
+//var summa = (int x, int y) => x + y;
+//Console.WriteLine(summa(2,6));
+//Console.WriteLine();
+//IntOperation operation = (x, y) => x + y;
+//Console.WriteLine(operation(99, 1));
+
+int[] mas = { 1, 2, 3, 4, 7, 9, 0 };
+int Sum(int[] array, Predicate<int> func)
 {
-    Console.WriteLine("hello");
-    Console.WriteLine("Hiiii");
-};
-mes();
-Console.WriteLine();
-Operation sum = (x, y) => Console.WriteLine($"{x}+{y}={x + y}");
-sum(9, 0);
-sum(10, 1);
-Console.WriteLine();
-ShowMessage message = mes => Console.WriteLine(mes);
-message("rrrr");
-Console.WriteLine();
-var welcome = (string m) => Console.WriteLine(m);
-welcome("mmm");
+    int result = 0;
+    foreach (int x in array)
+    {
+        if(func(x)) result+=x;
+    }
+    return result;
+}
+
+Console.WriteLine(Sum(mas, x => x%2==0));
+Console.WriteLine(Sum(mas, x => x % 2 != 0));
+Console.WriteLine(Sum(mas, x => x > 0));
 delegate void Operation(int x, int y);
 delegate void Message();
 delegate void ShowMessage(string str);
-
+delegate int IntOperation(int x, int y);
 
 
