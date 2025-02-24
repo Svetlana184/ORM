@@ -1,7 +1,7 @@
 ﻿/*КОЛЛЕКЦИИ:
- * списки (list)
- * множества (set) - без повторений
- * словари (dictionary) - ключ-значение
+ * списки (list) - list, linkedlist, stack, queue
+ * множества (set) - без повторений - hashset, sortedset
+ * словари (dictionary<T, K>) - ключ-значение
  */
 
 
