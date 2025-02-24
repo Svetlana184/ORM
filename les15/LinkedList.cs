@@ -13,29 +13,14 @@ namespace les15
     {
         private Node<T> head;
         private Node<T> tail;
-        int count;
+        private int count;
         public void Add(T data)
         {
             Node<T> node = new Node<T>(data);
-            if (head != null)
-            {
-                head = node;
-            }
-            else
-            {
-                tail.Next = node;
-            }
+            if (head == null) head = node;
+            else tail.Next = node;
             tail = node;
             count++;
-        }
-        public IEnumerator<T> GetEnumerator()
-        {
-            Node<T> current = head;
-            while (current != null)
-            {
-                yield return current.Data;
-                current = current.Next;
-            }
         }
         public bool Remove(T data)
         {
@@ -83,13 +68,21 @@ namespace les15
         }
         public void AppendFirst(T data)
         {
-            Node<T> node = new Node<T>(data );
+            Node<T> node = new Node<T>(data);
             node.Next = head;
             head = node;
             if (count == 0) tail = head;
             count++;
         }
-        
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            Node<T> current = head;
+            while (current != null)
+            {
+                yield return current.Data;
+                current = current.Next;
+            }
+        }
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IEnumerable)this).GetEnumerator();
