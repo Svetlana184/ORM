@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "les19linq", "les19linq\les1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "les20", "les20\les20.csproj", "{5044E9E5-6094-4570-817D-DB3ADF34AA80}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "network2", "network2\network2.csproj", "{0FB40463-2149-499A-95BB-9BEC546F361F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +167,10 @@ Global
 		{5044E9E5-6094-4570-817D-DB3ADF34AA80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5044E9E5-6094-4570-817D-DB3ADF34AA80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5044E9E5-6094-4570-817D-DB3ADF34AA80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FB40463-2149-499A-95BB-9BEC546F361F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FB40463-2149-499A-95BB-9BEC546F361F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FB40463-2149-499A-95BB-9BEC546F361F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FB40463-2149-499A-95BB-9BEC546F361F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
