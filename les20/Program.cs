@@ -120,7 +120,125 @@ Console.WriteLine(mas1.Where(x => x%2==0).Average());
 //обращение к индексам
 Console.WriteLine(mas1.Where((m,n)=> n %2!=0).Sum());
 Random random = new Random();
-mas1 = mas1.Where((m, n) => m = random.Next(20));
+//mas1 = mas1.Where((m, n) => m = random.Next(20));
+int[] mas = new int[32];
+mas = mas.Select((i,j)=> i = random.Next(1, 10)).ToArray();
+foreach (int x in mas)
+{
+    Console.Write(x + " ");
+}
+Console.WriteLine();
+//метод skip - пропускает кол-во элементов, которые передаются как параметр
+
+int s1 = mas.Skip(4).Sum();
+Console.WriteLine(s1);
+int s2 = mas.SkipLast(4).Sum();
+Console.WriteLine(s2);
+int s3 = mas.SkipWhile(x => x%2!=0).Sum(); //пропускает нечетные элементы
+Console.WriteLine(s3);
+
+int t1 = mas.Take(3).Sum();
+Console.WriteLine(t1);
+int t2 = mas.TakeLast(4).Sum();
+Console.WriteLine(t2);
+int t3 = mas.TakeWhile(x => x % 2 == 0).Sum(); //берет только четные элементы
+Console.WriteLine(t3);
+Console.Clear();
+//for (int j = 0; j < mas.Length/10+1; j++)
+//{
+//    Console.Clear();
+//    int[] temp = mas.Skip(j*10).Take(10).ToArray();
+//    foreach(int x in temp) Console.Write(x + " ");
+//    Console.ReadKey();
+//}
+//var cars = GetCars();
+//var company = cars.GroupBy(p => p.Make);
+//foreach (var car in company)
+//{
+//    Console.WriteLine(car.Key);
+//    foreach (var j in car)
+//    {
+//        Console.WriteLine(j.Year + " " + j.Model + " " + j.VIN);
+//    }
+//}
+//var cars = GetCars().OrderBy(c => c.Make)
+//                            .ThenByDescending(c => c.Model)
+//                            .ThenBy(c => c.Year);
+//foreach (var item in cars)
+//{
+//    Console.WriteLine("Car VIN:{0} Make:{1} Model:{2} Year:{3}",
+//        item.VIN, item.Make, item.Model, item.Year);
+//}
+
+
+//JOIN
+
+//var makes = new string[] { "Audi", "BMW", "Ford", "Mazda", "VW" };
+//var cars = GetCars();
+
+//var query1 = makes.Join(cars,
+//    make => make, car => car.Make,
+//    (make, innerCar) => new { Make = make, Car = innerCar });
+//foreach (var item in query1)
+//{
+//    Console.WriteLine("Make: {0}, Car:{1} {2} {3}",
+//                        item.Make, item.Car.VIN, item.Car.Make, item.Car.Model);
+//}
+//Console.WriteLine();
+
+//GROUPJOIN
+
+//var query2 = makes.GroupJoin(cars,
+//    make => make, car => car.Make,
+//    (make, innerCars) => new { Make = make, Cars = innerCars });
+//foreach (var item in query2)
+//{
+//    Console.WriteLine("Make: {0}", item.Make);
+//    foreach (var car in item.Cars)
+//    { Console.WriteLine("Car VIN:{0}, Model:{1}", car.VIN, car.Model); }
+//}
+
+
+var numbers = Enumerable.Range(1, 1000);
+var cars = GetCars();
+var zip = numbers.Zip(cars, (i, c) => new
+{
+    Number = i,
+    CarMake = c.Make
+});
+foreach (var it in zip)
+{
+    Console.WriteLine("Number:{0} Make:{1}", it.Number, it.CarMake);
+}
+
+
+
+List<Car> GetCars()
+{
+    return new List<Car>
+                {
+                    new Car { VIN = "ABC123", Make = "Ford",
+                            Model = "F-250", Year = 2000 },
+                    new Car { VIN = "DEF123", Make = "BMW",
+                            Model = "Z-3", Year = 2005 },
+                    new Car { VIN = "ABC456", Make = "Audi",
+                            Model = "TT", Year = 2008 },
+                    new Car { VIN = "HIJ123", Make = "VW",
+                            Model = "Bug",  Year = 1956  },
+                    new Car { VIN = "DEF456", Make = "Ford",
+                            Model = "F-150", Year = 1998 }
+                };
+}
+public class Car
+{
+    public string VIN { get; set; }
+    public string Make { get; set; }
+    public string Model { get; set; }
+    public int Year { get; set; }
+    public string Color { get; set; }
+
+
+}
 class Person
 {
     public string Name { get; set; }
