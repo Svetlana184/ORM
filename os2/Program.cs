@@ -7,7 +7,6 @@
 using System.Diagnostics;
 using System.Reflection;
 
-
 //var process = Process.GetCurrentProcess();
 //Console.WriteLine(process.Id);
 //Console.WriteLine(process.Handle);
@@ -68,11 +67,59 @@ using System.Reflection;
  * 
  */
 
-AppDomain domain = AppDomain.CurrentDomain;
-Console.WriteLine(domain.FriendlyName);
-Console.WriteLine(domain.BaseDirectory);
-Assembly[] assemblies = domain.GetAssemblies();
-foreach (Assembly assembly in assemblies)
+//AppDomain domain = AppDomain.CurrentDomain;
+//Console.WriteLine(domain.FriendlyName);
+//Console.WriteLine(domain.BaseDirectory);
+//Assembly[] assemblies = domain.GetAssemblies();
+//foreach (Assembly assembly in assemblies)
+//{
+//    Console.WriteLine(assembly.GetName().Name);
+//}
+
+
+
+
+//ПАРАЛЛЕЛЬНОЕ ПРОГРАММИРОВАНИЕ((((( И БИБЛИОТЕКА TPL (task parallel library)
+
+/* библиотека упрощает работу с многопроцессорными, многоядерными системами, упрощает работу по созданию
+ * новых потоков
+ * 
+ * в основе библиотеки лежит концепция задач, каждая из которых описывает отдельную
+ * продолжительную операцию (Task). Данный класс описывает отдельную задачу, которая запускается 
+ * асинхронно в одном из потоков из пула потоков
+ * 
+ * задача это НЕ поток 1!!11!1!1
+ * 
+ * 
+ * 
+ */
+
+Task task1 = new Task(()=> 
 {
-    Console.WriteLine(assembly.GetName().Name);
-}
+    Console.WriteLine("Hello, world");
+    Thread.Sleep(1000);
+        
+});
+task1.Start();
+Task task2 = Task.Factory.StartNew(() => 
+{
+    Console.WriteLine("Hello, world");
+    Thread.Sleep(1000);
+});
+Task task3 = Task.Run(() =>
+{
+    Console.WriteLine("Hello, task");
+    Thread.Sleep(1000);
+});
+
+task1.Wait();
+task2.Wait();
+task3.Wait();
+Console.WriteLine(task1.Id);
+Console.WriteLine(task1.AsyncState);
+Console.WriteLine(task1.Status);
+Console.WriteLine(task1.Exception);
+Console.WriteLine(task1.IsCompleted);
+Console.WriteLine(task1.IsCanceled);
+Console.WriteLine(task1.IsFaulted);
+Console.WriteLine(task1.IsCompletedSuccessfully);
