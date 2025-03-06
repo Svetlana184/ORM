@@ -57,6 +57,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "les20", "les20\les20.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "network2", "network2\network2.csproj", "{0FB40463-2149-499A-95BB-9BEC546F361F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "os1", "os1\os1.csproj", "{2E77A74C-0F2A-4205-A57E-E2AC70743766}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "os2", "os2\os2.csproj", "{D89172C1-D2B6-4EFC-8A4D-8F4E5DDA56F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -171,6 +175,14 @@ Global
 		{0FB40463-2149-499A-95BB-9BEC546F361F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FB40463-2149-499A-95BB-9BEC546F361F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FB40463-2149-499A-95BB-9BEC546F361F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E77A74C-0F2A-4205-A57E-E2AC70743766}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E77A74C-0F2A-4205-A57E-E2AC70743766}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E77A74C-0F2A-4205-A57E-E2AC70743766}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E77A74C-0F2A-4205-A57E-E2AC70743766}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D89172C1-D2B6-4EFC-8A4D-8F4E5DDA56F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D89172C1-D2B6-4EFC-8A4D-8F4E5DDA56F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D89172C1-D2B6-4EFC-8A4D-8F4E5DDA56F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D89172C1-D2B6-4EFC-8A4D-8F4E5DDA56F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
