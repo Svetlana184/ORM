@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Les22"
         mc:Ignorable="d"
-        Title="Hello, wpf" Height="450" Width="450" Left="300" Top="200" FontSize="20">
+        Title="Hello, wpf" Height="450" Width="450" Left="300" Top="200" FontSize="20" MinWidth="300" MaxWidth="500" MinHeight="300" MaxHeight="500">
     <!--<Canvas Background="Bisque">
         <TextBox x:Name="textBoxMessage" Canvas.Left="65" TextWrapping="Wrap" Canvas.Top="41" Width="120" 
                  HorizontalAlignment="Left" VerticalAlignment="Center"/>
