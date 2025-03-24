@@ -23,6 +23,8 @@ namespace Les24
             InitializeComponent();
             person = new Person();
             DataContext = person;
+
+
         }
     }
 }

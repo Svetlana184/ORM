@@ -20,10 +20,33 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="Создайте аккаунт" HorizontalAlignment="Center" VerticalAlignment="Center" 
                    FontSize="30" TextWrapping="Wrap" Padding="100 5" TextAlignment="Center" FontWeight="SemiBold"/>
-        <TextBox Grid.Row="1" Margin="50 20" Foreground="Black" materialDesign:HintAssist.Hint="Имя"/>
-        <TextBox Grid.Row="2" Margin="50 20" Foreground="Black" materialDesign:HintAssist.Hint="Фамилия"/>
-        <TextBox Grid.Row="3" Margin="50 20" Foreground="Black" materialDesign:HintAssist.Hint="Эл. почта"/>
-        <PasswordBox Grid.Row="4" materialDesign:HintAssist.Hint="Пароль" Margin="50 20"/>
+        <TextBox Grid.Row="1" Margin="50 20" Foreground="Black" materialDesign:HintAssist.Hint="Имя">
+            <TextBox.Text>
+                <Binding Path="Name">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Grid.Row="2" Margin="50 20" Foreground="Black" materialDesign:HintAssist.Hint="Фамилия">
+            <Binding Path="SurName">
+                <Binding.ValidationRules>
+                    <DataErrorValidationRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+        <TextBox Grid.Row="3" Margin="50 20" Foreground="Black" materialDesign:HintAssist.Hint="Эл. почта">
+            <Binding Path="Email">
+                <Binding.ValidationRules>
+                    <DataErrorValidationRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+        <PasswordBox Grid.Row="4" materialDesign:HintAssist.Hint="Пароль" Margin="50 20">
+            
+           
+        </PasswordBox>
         <Button Grid.Row="5" Foreground="White" Background="Black" Margin="50 1" Content="Регистрация" FontSize="20"/>
         <Grid Grid.Row="6">
             <Grid.ColumnDefinitions>
