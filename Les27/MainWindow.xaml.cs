@@ -8,24 +8,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Les24.Model;
 
-namespace Les24
+namespace Les27
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Person person;
         public MainWindow()
         {
             InitializeComponent();
-            person = new Person();
-            DataContext = person;
-
-
         }
-
     }
 }
