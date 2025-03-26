@@ -6,6 +6,7 @@
 
 using System.Diagnostics;
 using System.Reflection;
+using System.Threading.Channels;
 
 //var process = Process.GetCurrentProcess();
 //Console.WriteLine(process.Id);
@@ -94,32 +95,202 @@ using System.Reflection;
  * 
  */
 
-Task task1 = new Task(()=> 
-{
-    Console.WriteLine("Hello, world");
-    Thread.Sleep(1000);
-        
-});
-task1.Start();
-Task task2 = Task.Factory.StartNew(() => 
-{
-    Console.WriteLine("Hello, world");
-    Thread.Sleep(1000);
-});
-Task task3 = Task.Run(() =>
-{
-    Console.WriteLine("Hello, task");
-    Thread.Sleep(1000);
-});
+//Task task1 = new Task(()=> 
+//{
+//    Console.WriteLine("Hello, world");
+//    Thread.Sleep(1000);
 
-task1.Wait();
-task2.Wait();
-task3.Wait();
-Console.WriteLine(task1.Id);
-Console.WriteLine(task1.AsyncState);
-Console.WriteLine(task1.Status);
-Console.WriteLine(task1.Exception);
-Console.WriteLine(task1.IsCompleted);
-Console.WriteLine(task1.IsCanceled);
-Console.WriteLine(task1.IsFaulted);
-Console.WriteLine(task1.IsCompletedSuccessfully);
+//});
+//task1.Start();
+//Task task2 = Task.Factory.StartNew(() => 
+//{
+//    Console.WriteLine("Hello, world");
+//    Thread.Sleep(1000);
+//});
+//Task task3 = Task.Run(() =>
+//{
+//    Console.WriteLine("Hello, task");
+//    Thread.Sleep(1000);
+//});
+
+//task1.Wait();
+//task2.Wait();
+//task3.Wait();
+//Console.WriteLine(task1.Id);
+//Console.WriteLine(task1.AsyncState);
+//Console.WriteLine(task1.Status);
+//Console.WriteLine(task1.Exception);
+//Console.WriteLine(task1.IsCompleted);
+//Console.WriteLine(task1.IsCanceled);
+//Console.WriteLine(task1.IsFaulted);
+//Console.WriteLine(task1.IsCompletedSuccessfully);
+
+//ВЛОЖЕННЫЕ ЗАДАЧИ
+
+//var outer = Task.Factory.StartNew(() =>
+//{
+//    Console.WriteLine("Outer task starting ...");
+//    var inner = Task.Factory.StartNew(() =>
+//    {
+//        Console.WriteLine("Inner task starting ...");
+//        Thread.Sleep(2000);
+//        Console.WriteLine("Inner task finishing ...");
+//    }, TaskCreationOptions.AttachedToParent);
+//});
+//outer.Wait();
+//Console.WriteLine("End of main");
+
+//МАССИВ ЗАДАЧ
+
+//Task[] tasks1 = new Task[3]
+//{
+//    new Task(() => Console.WriteLine("First task")),
+//    new Task(() => Console.WriteLine("Second task")),
+//    new Task(() => Console.WriteLine("Third task"))
+//};
+
+//foreach (var task in tasks1) task.Start();
+//Task.WaitAll(tasks1);
+
+
+//int Sum(int x, int y) => x + y;
+//int n = 6, m = 7;
+//Task<int> taskSum = new Task<int>(() => Sum(n, m));
+//taskSum.Start();
+//int res = taskSum.Result;
+//Console.WriteLine($"{n} + {m} = {res}");
+
+
+//Задачи продолжения continuation task
+//int Sum(int x, int y) => x + y;
+//void PrintResult(int sum) => Console.Write($"Sum: {sum}");
+//Task<int> taskSum = new Task<int>(() => Sum(4,8));
+//Task printTask = taskSum.ContinueWith(task => PrintResult(task.Result));
+//taskSum.Start();
+//printTask.Wait();
+
+
+
+//класс Parallel
+
+//void Print()
+//{
+//    Console.WriteLine($"Выполняется задача {Task.CurrentId}");
+//    Thread.Sleep(1000);
+//}
+//void Square(int n)
+//{
+//    Console.WriteLine($"Выполняется задача {Task.CurrentId}");
+//    Thread.Sleep(3000);
+//    Console.WriteLine($"Результат {n*n}");
+//}
+//Parallel.Invoke(
+//    Print,
+//    () =>
+//    {
+//        Console.WriteLine($"Выполняется задача {Task.CurrentId}");
+//        Thread.Sleep(3000);
+//    },
+//    ()=>Square(10)
+//);
+
+
+
+//void Square(int n, ParallelLoopState pls)
+//{
+//    if (n==4) pls.Break();
+//    Console.WriteLine($"Выполняется задача {Task.CurrentId}");
+//    Thread.Sleep(3000);
+//    Console.WriteLine($"Результат {n * n}");
+//}
+
+
+//Parallel.For
+//Parallel.For(1, 5, Square);
+
+//Parallel.ForEach
+//ParallelLoopResult result = Parallel.ForEach<int>(new List<int>() { 5,2,9,4}, Square);
+//ParallelLoopResult result = Parallel.For(1, 10, Square);
+//if (!result.IsCompleted) Console.WriteLine($"Завершение на итерации {result.LowestBreakIteration}");
+
+//отмена задач и параллельных операций. CancellationToken
+
+
+//мягкий выход из задачи без исключения OperationCanceledException
+//CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+//CancellationToken token = cancelTokenSource.Token;
+//Task task = new Task(() =>
+//{
+//    for (int i = 0; i < 10; i++)
+//    {
+//        if (token.IsCancellationRequested)
+//        {
+//            Console.WriteLine("операция прервана");
+//            return;
+//        }
+//        Console.WriteLine($"квадрат числа {i} равен {i * i}");
+//        Thread.Sleep(200);
+//    }
+//}, token);
+//task.Start();
+//cancelTokenSource.Cancel();
+//Thread.Sleep(1000);
+//Console.WriteLine($"TaskStatus: {task.Status}");
+//cancelTokenSource.Dispose();
+
+//отмена задачи с помощью генерации исключения
+
+//CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+//CancellationToken token = cancelTokenSource.Token;
+//Task task = new Task(() =>
+//{
+//    for (int i = 0; i < 10; i++)
+//    {
+//        if (token.IsCancellationRequested)
+//        {
+//            Console.WriteLine("операция прервана");
+//            return;
+//        }
+//        Console.WriteLine($"квадрат числа {i} равен {i * i}");
+//        Thread.Sleep(200);
+//    }
+//}, token);
+//try
+//{
+//    task.Start();
+//    Thread.Sleep(1000);
+//    cancelTokenSource.Cancel();
+//    task.Wait();
+//}
+//catch (AggregateException ae)
+//{
+
+//}
+//finally
+//{
+//    cancelTokenSource.Dispose();
+//}
+
+//регистрация обработчика отмены задачи
+
+CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+CancellationToken token = cancelTokenSource.Token;
+Task task = new Task(() =>
+{
+    for (int i = 0; i < 10; i++)
+    {
+        if (token.IsCancellationRequested)
+        {
+            Console.WriteLine("операция прервана");
+            return;
+        }
+        Console.WriteLine($"квадрат числа {i} равен {i * i}");
+        Thread.Sleep(200);
+    }
+}, token);
+task.Start();
+
+//передача токенов во внешний метод
+
+//отмена параллельных операций
+
