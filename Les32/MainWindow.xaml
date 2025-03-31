@@ -22,12 +22,24 @@
         <Button x:Name="button" Grid.Row="4" Grid.Column="1" Height="100" Width="100" MaxHeight="200" Background="LightSkyBlue" BorderThickness="0"/>
         <TextBlock Text="Height" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="3"/>
         <TextBox Grid.Row="0" Grid.Column="1" Height="23" Margin="2" 
-                 Text="{Binding ElementName=button, Path=Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="LightSkyBlue"/>
+                 Text="{Binding ElementName=button, Path=Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background=
+                 "LightSkyBlue"/>
+        
+        
         <TextBlock Text="MinHeight" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="3"/>
         <TextBox Grid.Row="1" Grid.Column="1" Height="23" Margin="2" 
-                Text="{Binding ElementName=button, Path=Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="LightSkyBlue"/>
+                Text="{Binding ElementName=button, Path=MinHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="LightSkyBlue"/>
+        
+        
         <TextBlock Text="MaxHeight" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="3"/>
         <TextBox Grid.Row="2" Grid.Column="1" Height="23" Margin="2" 
-                Text="{Binding ElementName=button, Path=Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="LightSkyBlue"/>
+                Text="{Binding ElementName=button, Path=MaxHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="LightSkyBlue"/>
+        
+        
+        <TextBlock Text="ActualHeight" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="3"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Height="23" Margin="2"  
+            Text="{Binding ElementName=button, Path=ActualHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="LightSkyBlue" IsReadOnly="True"/>
+        
+        
     </Grid>
 </Window>
