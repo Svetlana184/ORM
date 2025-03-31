@@ -1,0 +1,14 @@
+﻿<Window x:Class="Les31.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Les31"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" Background="AliceBlue">
+    <StackPanel>
+        <Slider x:Name="slider" Minimum="1" Maximum="40" Value="10" TickFrequency="1" IsSnapToTickEnabled="True" TickPlacement="TopLeft" Margin="10"/>
+        <TextBox Margin="10" Height="23" Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Margin="10" Text="Текстовый квест" FontSize="{Binding ElementName=slider, Path=Value}"/>
+    </StackPanel>
+</Window>

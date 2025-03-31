@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Les29"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="250" Width="400">
     <Grid>
+        <!--<StackPanel Width="200" Height="200" HorizontalAlignment="Left" PreviewMouseDown="StackPanel_MouseDown" Background="AliceBlue">
+            <Button x:Name="uutton" HorizontalAlignment="Center"  VerticalAlignment="Center" PreviewMouseDown="StackPanel_MouseDown" Background="White" BorderThickness="0" Width="60" Height="60">
+                <Ellipse Width="30" Height="30" Fill="LightPink"  PreviewMouseDown="StackPanel_MouseDown"/>
+            </Button>
+        </StackPanel>
+        <TextBox Name="textt" TextWrapping="Wrap" Text="TextBox" Margin="328,48,10,47" RenderTransformOrigin="0.503,0.858"/>-->
 
+        <!--<StackPanel x:Name="menuSelector" RadioButton.Checked ="Radio_click">
+            <RadioButton GroupName="menu" Content="салат оливье"/>
+            <RadioButton GroupName="menu" Content="котлета"/>
+            <RadioButton GroupName="menu" Content="пицца"/>
+            <RadioButton GroupName="menu" Content="рулет"/>
+        </StackPanel>-->
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <TextBox KeyDown="TextBox_KeyDown"   />
+        </DockPanel>
+        <TextBlock x:Name="textBlock" Grid.Row="1"/>
     </Grid>
 </Window>
