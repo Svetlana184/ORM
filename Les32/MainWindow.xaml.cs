@@ -20,5 +20,23 @@ namespace Les32
         {
             InitializeComponent();
         }
+        public static readonly DependencyProperty MyPropProperty;
+        public string MyProp
+        {
+            get
+            {
+                return (string)GetValue(MyPropProperty);
+            }
+            set { SetValue(MyPropProperty, value); }
+        }
+        static MainWindow()
+        {
+            FrameworkPropertyMetadata metadata = new FrameworkPropertyMetadata("начальное значение");
+            metadata.BindsTwoWayByDefault = true;
+            metadata.Inherits = false;
+            metadata.AffectsRender = true;
+            metadata.AffectsMeasure = false;
+            MyPropProperty = DependencyProperty.Register("MyProp", typeof(string), typeof(MainWindow), metadata);
+        }
     }
 }
