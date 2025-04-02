@@ -7,6 +7,31 @@
         mc:Ignorable="d"
         Title="Телефоны" Height="450" Width="800">
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.8*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="0" ItemsSource="{Binding Phones}" SelectedItem="{Binding SelectedPhone}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5">
+                        <TextBlock FontSize="18" Text="{Binding Path=Title}"/>
+                        <TextBlock FontSize="18" Text="{Binding Path=Company}"/>
+                        <TextBlock FontSize="18" Text="{Binding Path=Price}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Column="1" DataContext="{Binding SelectedPhone}">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0"/>
+            <TextBlock Text="{Binding Company, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"/>
+            <TextBlock Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2"/>
+        </Grid>
     </Grid>
 </Window>
