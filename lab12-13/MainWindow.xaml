@@ -27,6 +27,10 @@
                             <Button>
                                 <Image Source="/Images/save.png"/>
                             </Button>
+                            <Separator/>
+                            <Button>
+                                
+                            </Button>
                         </ToolBar>
                         <Menu Height="25" VerticalAlignment="Top" Grid.Row="0">
                             <MenuItem Header="File">
