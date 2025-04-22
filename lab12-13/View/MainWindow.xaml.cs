@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using lab12_13.View;
 
 namespace lab12_13
 {
@@ -19,6 +20,15 @@ namespace lab12_13
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Create_Click(object sender, RoutedEventArgs e)
+        {
+            MotoView view = new MotoView();
+            if(view.ShowDialog() == true )
+            {
+
+            }
         }
     }
 }
