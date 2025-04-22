@@ -23,15 +23,27 @@
                             <RowDefinition Height="9*"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
-                        <ToolBar Grid.Row="1">
-                            <Button>
-                                <Image Source="/Images/save.png"/>
-                            </Button>
-                            <Separator/>
-                            <Button>
-                                
-                            </Button>
-                        </ToolBar>
+                        <StackPanel Grid.Row="1" VerticalAlignment="Top" Orientation="Horizontal">
+                            <ToolBar>
+                                <Button>
+                                    <Image Source="/Images/save.png"/>
+                                </Button>
+                                <Separator/>
+                                <Button>
+                                    <Image Source="/Images/open.png"/>
+                                </Button>
+                                <Separator/>
+                            </ToolBar>
+                            <ToolBar HorizontalAlignment="Right">
+                                <Button>
+                                    <Image Source="/Images/create.png"></Image>
+                                </Button>
+                                <Button>
+                                    <Image Source="/Images/close.png">
+                                    </Image>
+                                </Button>
+                            </ToolBar>
+                        </StackPanel>
                         <Menu Height="25" VerticalAlignment="Top" Grid.Row="0">
                             <MenuItem Header="File">
                                 <MenuItem Header="Open..."/>
