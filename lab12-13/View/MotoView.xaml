@@ -32,7 +32,15 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">
             <Label>Введите марку</Label>
-            <TextBox Text="{Binding Marka}"></TextBox>
+            <TextBox Validation.Error="TextBox_Error">
+                <TextBox.Text>
+                    <Binding Path="Marka" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Left">
             <Label HorizontalAlignment="Left">Выберите цвет</Label>
@@ -42,23 +50,63 @@
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">
             <Label>Введите серийный номер</Label>
-            <TextBox Text="{Binding Serial}"></TextBox>
+            <TextBox Validation.Error="TextBox_Error">
+                <TextBox.Text>
+                    <Binding Path="Serial" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Center">
             <Label>Введите регистрационный номер</Label>
-            <TextBox Text="{Binding RegNumber}"></TextBox>
+            <TextBox Validation.Error="TextBox_Error">
+                <TextBox.Text>
+                    <Binding Path="RegNumber" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
             <Label>Введите год выпуска</Label>
-            <TextBox Text="{Binding Year}"></TextBox>
+            <TextBox Validation.Error="TextBox_Error">
+                <TextBox.Text>
+                    <Binding Path="Year" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
             <Label>Введите год техосмотра</Label>
-            <TextBox Text="{Binding YearTech}"></TextBox>
+            <TextBox Validation.Error="TextBox_Error">
+                <TextBox.Text>
+                    <Binding Path="YearTech" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
             <Label>Введите цену</Label>
-            <TextBox Text="{Binding Price}"></TextBox>
+            <TextBox Validation.Error="TextBox_Error">
+                <TextBox.Text>
+                    <Binding Path="Price" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </StackPanel>
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.ColumnDefinitions>

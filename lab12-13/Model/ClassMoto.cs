@@ -1,20 +1,156 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace lab12_13.Model
 {
-    public class ClassMoto
+    public class ClassMoto:IDataErrorInfo, INotifyPropertyChanged
     {
-        public string? Marka { get; set; }
-        public Color Color { get; set; }
-        public string? Serial { get; set; }
-        public string? RegNumber { get; set; }
-        public int Year { get; set; }
-        public int YearTech { get; set; }
-        public decimal Price { get; set; }
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = string.Empty;
+                switch (columnName) 
+                {
+                    case "Marka":
+                        if(Marka != null)
+                        {
+                            if (!Regex.IsMatch(Marka!, @"[0-Za-z0-9]+$"))
+                                error = "Имя не должно содержать вспомогательных символов";
+                        }
+                        else
+                        {
+                            error = "Поле не должно быть пустым";
+                        }
+                        break;
+
+                    case "Serial":
+                        if(Serial != null)
+                        {
+                            if (!Regex.IsMatch(Serial!, @"[0-Za-z0-9]+$"))
+                                error = "Серийный номер не должно содержать вспомогательных символов";
+                        }
+                        else
+                        {
+                            error = "Поле не должно быть пустым";
+                        }
+                        break;
+                    case "RegNumber":
+                        if(RegNumber != null)
+                        {
+                            if (!Regex.IsMatch(RegNumber!, @"[0-Za-z0-9]+$"))
+                                error = "Рег.номер не должно содержать вспомогательных символов";
+                        }
+                        else
+                        {
+                            error = "Поле не должно быть пустым";
+                        }
+                        break;
+                    case "Year":
+                        if (Year<=0)
+                            error = "Поле не должно быть равно нулю или являться отрицательным";
+                        break;
+                    case "YearTech":
+                        if (YearTech <= 0)
+                            error = "Поле не должно быть равно нулю или являться отрицательным";
+                        break;
+                    case "Price":
+                        if (Price <= 0)
+                            error = "Поле не должно быть равно нулю или являться отрицательным";
+                        break;
+     
+                }
+                return error;
+
+            }
+        }
+
+        private string? marka;
+        public string? Marka 
+        {
+            get { return marka; }
+            set 
+            {
+                marka = value!;
+                OnPropertyChanged(nameof(Marka));
+            } 
+        }
+        private Color color;
+        public Color Color
+        {
+            get { return color; }
+            set
+            {
+                color = value!;
+                OnPropertyChanged(nameof(Color));
+            }
+        }
+        private string? serial;
+        public string? Serial
+        {
+            get { return serial; }
+            set
+            {
+                serial = value!;
+                OnPropertyChanged(nameof(Serial));
+            }
+        }
+        private string? regnumber;
+        public string? RegNumber
+        {
+            get { return regnumber; }
+            set
+            {
+                regnumber = value!;
+                OnPropertyChanged(nameof(RegNumber));
+            }
+        }
+        private int year;
+        public int Year
+        {
+            get { return year; }
+            set
+            {
+                year = value!;
+                OnPropertyChanged(nameof(Year));
+            }
+        }
+
+        private int yeartech;
+        public int YearTech
+        {
+            get { return yeartech; }
+            set
+            {
+                yeartech = value!;
+                OnPropertyChanged(nameof(YearTech));
+            }
+        }
+        private decimal price;
+        public decimal Price
+        {
+            get { return price; }
+            set
+            {
+                price = value!;
+                OnPropertyChanged(nameof(Price));
+            }
+        }
+
+        public string Error => throw new NotImplementedException();
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if(PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
     }
 }

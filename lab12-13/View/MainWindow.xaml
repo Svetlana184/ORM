@@ -35,7 +35,7 @@
                                 <Separator/>
                             </ToolBar>
                             <ToolBar HorizontalAlignment="Right">
-                                <Button Click="Create_Click">
+                                <Button Command="{Binding AddCommand}">
                                     <Image Source="/Images/create.png"></Image>
                                 </Button>
                                 <Button>

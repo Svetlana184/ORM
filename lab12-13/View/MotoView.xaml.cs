@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using lab12_13.Model;
 using Xceed.Wpf.Toolkit;
+using MessageBox = System.Windows.MessageBox;
 
 namespace lab12_13.View
 {
@@ -22,21 +23,29 @@ namespace lab12_13.View
     public partial class MotoView : Window
     {
         public ClassMoto Moto { get; set; }
-        public MotoView()
+        private string Error = string.Empty;
+        public MotoView(ClassMoto moto)
         {
             InitializeComponent();
+            Moto = moto;
             DataContext = Moto;
-            int x = 0;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            ////&
+                DialogResult = true;
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             DialogResult= false;
+        }
+
+        private void TextBox_Error(object sender, ValidationErrorEventArgs e)
+        {
+            Error = e.Error.ErrorContent.ToString()!;
         }
     }
 }
