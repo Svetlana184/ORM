@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:lab12_13"
         mc:Ignorable="d"
         Title="Лабораторная работа №12-13" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <TabControl >
             <TabItem x:Name="lab12">
@@ -25,11 +30,11 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="1" VerticalAlignment="Top" Orientation="Horizontal">
                             <ToolBar>
-                                <Button>
+                                <Button Command="{Binding SaveCommand}">
                                     <Image Source="/Images/save.png"/>
                                 </Button>
                                 <Separator/>
-                                <Button>
+                                <Button Command="{Binding OpenCommand}">
                                     <Image Source="/Images/open.png"/>
                                 </Button>
                                 <Separator/>
@@ -38,7 +43,7 @@
                                 <Button Command="{Binding AddCommand}">
                                     <Image Source="/Images/create.png"></Image>
                                 </Button>
-                                <Button>
+                                <Button >
                                     <Image Source="/Images/close.png">
                                     </Image>
                                 </Button>
@@ -53,7 +58,24 @@
                             </MenuItem>
                             <MenuItem Header="Edit"></MenuItem>
                         </Menu>
-                        <RichTextBox x:Name="docBox" Grid.Row="2" />
+                        <ListBox x:Name="docBox" Grid.Row="2" ItemsSource="{Binding Motos}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Vertical" Width="300">
+                                            <TextBlock  Text="{Binding Marka}" FontSize="14"/>
+                                            <Label />
+                                            <TextBlock  Text="{Binding Serial}" FontSize="14"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical" Width="300">
+                                            <TextBlock  Text="{Binding Year}" FontSize="14"/>
+                                            <TextBlock  Text="{Binding YearTech}" FontSize="14"/>
+                                            <TextBlock  Text="{Binding Price}" FontSize="14"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                         <StatusBar x:Name="Status" Grid.Row="3" />
                     </Grid>
                 </TabItem.Content>

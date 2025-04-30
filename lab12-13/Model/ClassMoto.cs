@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
+
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace lab12_13.Model
 {
@@ -82,8 +83,8 @@ namespace lab12_13.Model
                 OnPropertyChanged(nameof(Marka));
             } 
         }
-        private Color color;
-        public Color Color
+        private Color? color;
+        public Color? Color
         {
             get { return color; }
             set
@@ -152,5 +153,24 @@ namespace lab12_13.Model
             if(PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
+
+        public override string? ToString()
+        {
+            return Marka + " " + Color + " " + Serial + " " + RegNumber + " " + Year + " " + YearTech + " " + Price; 
+        }
+
+        public ClassMoto(string? marka,  Color? color,  string? serial,  string? regNumber,  int year,  int yearTech, decimal price )
+        {
+            this.marka = marka;
+            this.color = color;
+            this.serial = serial;
+            this.regnumber = regNumber;
+            this.yeartech = yearTech;
+            this.year = year;
+            this.price = price;
+           
+        }
+
+        public ClassMoto() { }
     }
 }

@@ -9,13 +9,21 @@
         Title="Добавить" Height="450" Width="800">
     <Window.Resources>
         <Style TargetType="TextBox">
-            <Setter Property="FontFamily" Value="Verdana" />
-            <Setter Property="Margin" Value="20 0" />
-            <Setter Property="FontSize" Value="20"/>
-        </Style>
+                <Setter Property="FontFamily" Value="Verdana" />
+                <Setter Property="Margin" Value="20 0"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="True">
+                        <Setter Property="ToolTip"
+                    Value="{Binding RelativeSource={RelativeSource Self},
+                        Path=(Validation.Errors)[0].ErrorContent}" />
+                        <Setter Property="Foreground" Value="Red" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
         <Style TargetType="Label">
             <Setter Property="FontFamily" Value="Verdana" />
-            <Setter Property="Margin" Value="20 0" />
+            <Setter Property="Margin" Value="20 0"/>
             <Setter Property="FontSize" Value="14"/>
         </Style>
     </Window.Resources>
