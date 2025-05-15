@@ -58,21 +58,24 @@
                             </MenuItem>
                             <MenuItem Header="Edit"></MenuItem>
                         </Menu>
-                        <ListBox x:Name="docBox" Grid.Row="2" ItemsSource="{Binding Motos}">
+                        <ListBox Grid.Row="2" ItemsSource="{Binding Motos}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <StackPanel Orientation="Vertical" Width="300">
-                                            <TextBlock  Text="{Binding Marka}" FontSize="14"/>
-                                            <Label />
-                                            <TextBlock  Text="{Binding Serial}" FontSize="14"/>
+                                    <Border CornerRadius="10" Background="Orange" Margin="5" Width="740">
+                                        <StackPanel Orientation="Horizontal" Margin="5">
+                                            <StackPanel Background="{Binding Path=Color,Converter={StaticResource myColorConverter}}"
+                                                Margin="10" Width="75" Height="75"/>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="{Binding StringFormat=Марка: {0},Path=Marka}" FontSize="20" Margin="5" Foreground="White"/>
+                                                <TextBlock Text="{Binding StringFormat=Серия: {0},Path=Serial}" FontSize="20" Margin="5" Foreground="White"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="{Binding StringFormat=Год выпуска:{0},Path=Year}" FontSize="20" Margin="5" Foreground="White"/>
+                                                <TextBlock Text="{Binding StringFormat=Год техосмотра:{0},Path=YearTech}" FontSize="20" Margin="5" Foreground="White"/>
+                                                <TextBlock Text="{Binding StringFormat=Цена: {0:F2},Path=Price}" FontSize="20" Margin="5" Foreground="White"/>
+                                            </StackPanel>
                                         </StackPanel>
-                                        <StackPanel Orientation="Vertical" Width="300">
-                                            <TextBlock  Text="{Binding Year}" FontSize="14"/>
-                                            <TextBlock  Text="{Binding YearTech}" FontSize="14"/>
-                                            <TextBlock  Text="{Binding Price}" FontSize="14"/>
-                                        </StackPanel>
-                                    </StackPanel>
+                                    </Border>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
@@ -89,7 +92,64 @@
                 </TabItem.Header>
                 <TabItem.Content>
                     <Grid>
-
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="9*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="1" VerticalAlignment="Top" Orientation="Horizontal">
+                            <ToolBar>
+                                <Button Command="{Binding SaveCommand}">
+                                    <Image Source="/Images/save.png"/>
+                                </Button>
+                                <Separator/>
+                                <Button Command="{Binding OpenCommand}">
+                                    <Image Source="/Images/open.png"/>
+                                </Button>
+                                <Separator/>
+                            </ToolBar>
+                            <ToolBar HorizontalAlignment="Right">
+                                <Button Command="{Binding AddCommand}">
+                                    <Image Source="/Images/create.png"></Image>
+                                </Button>
+                                <Button >
+                                    <Image Source="/Images/close.png">
+                                    </Image>
+                                </Button>
+                            </ToolBar>
+                        </StackPanel>
+                        <Menu Height="25" VerticalAlignment="Top" Grid.Row="0">
+                            <MenuItem Header="File">
+                                <MenuItem Header="Open..."/>
+                                <MenuItem Header="Save..."/>
+                                <Separator/>
+                                <MenuItem Header="Exit"/>
+                            </MenuItem>
+                            <MenuItem Header="Edit"></MenuItem>
+                        </Menu>
+                        <ListBox Grid.Row="2" ItemsSource="{Binding Motos}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="10" Background="Orange" Margin="5" Width="740">
+                                        <StackPanel Orientation="Horizontal" Margin="5">
+                                            <StackPanel Background="{Binding Path=Color,Converter={StaticResource myColorConverter}}"
+                            Margin="10" Width="75" Height="75"/>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="{Binding StringFormat=Марка: {0},Path=Marka}" FontSize="20" Margin="5" Foreground="White"/>
+                                                <TextBlock Text="{Binding StringFormat=Серия: {0},Path=Serial}" FontSize="20" Margin="5" Foreground="White"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="{Binding StringFormat=Год выпуска:{0},Path=Year}" FontSize="20" Margin="5" Foreground="White"/>
+                                                <TextBlock Text="{Binding StringFormat=Год техосмотра:{0},Path=YearTech}" FontSize="20" Margin="5" Foreground="White"/>
+                                                <TextBlock Text="{Binding StringFormat=Цена: {0:F2},Path=Price}" FontSize="20" Margin="5" Foreground="White"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <StatusBar x:Name="Status" Grid.Row="3" />
                     </Grid>
                 </TabItem.Content>
             </TabItem>

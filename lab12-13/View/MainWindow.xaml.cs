@@ -10,7 +10,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using lab12_13.View;
 using lab12_13.ViewModel;
-
+using lab12_13.Converter;
 namespace lab12_13
 {
     /// <summary>

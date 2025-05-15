@@ -11,7 +11,7 @@ using lab12_13.Infrastructure;
 using lab12_13.Model;
 using lab12_13.View;
 using Microsoft.Win32;
-
+using lab12_13.Converter;
 namespace lab12_13.ViewModel
 {
     public class MainViewModel
