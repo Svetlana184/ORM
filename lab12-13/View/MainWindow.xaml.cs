@@ -23,5 +23,6 @@ namespace lab12_13
             InitializeComponent();
             DataContext = new MainViewModel();
         }
+
     }
 }

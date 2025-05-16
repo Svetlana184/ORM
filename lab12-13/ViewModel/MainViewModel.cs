@@ -12,11 +12,34 @@ using lab12_13.Model;
 using lab12_13.View;
 using Microsoft.Win32;
 using lab12_13.Converter;
+using System.Runtime.CompilerServices;
+using System.ComponentModel;
 namespace lab12_13.ViewModel
 {
-    public class MainViewModel
+    public class MainViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<ClassMoto> Motos { get; set; }
+        private ClassMoto? selectedMoto;
+        public ClassMoto? SelectedMoto
+        {
+            get { return selectedMoto; }
+            set
+            {
+                selectedMoto = value;
+                OnPropertyChanged(nameof(SelectedMoto));
+            }
+        }
+        private int records;
+
+        public int Records 
+        { 
+            get { return records; }
+            set { 
+                records = value; 
+                OnPropertyChanged(nameof(Records));
+            }
+        }
+
 
         public MainViewModel()
         {
@@ -36,6 +59,7 @@ namespace lab12_13.ViewModel
                           ClassMoto moto = view.Moto;
                           Motos.Add(moto);
                       }
+                      Records = Motos.Count;
                   }));
             }
         }
@@ -87,8 +111,45 @@ namespace lab12_13.ViewModel
                                  decimal.Parse(mas[6]));
                                   Motos.Add(moto);
                               }
+                              Records = Motos.Count;
                           }
                       }
                   }));
+        private RelayCommand? clearCommand;
+        public RelayCommand ClearCommand
+        {
+            get
+            {
+                return clearCommand ?? (clearCommand = new RelayCommand((o) =>
+                {
+                    Motos.Clear();
+                    Records = Motos.Count;
+                }));
+            }
+        }
+        private RelayCommand? doubleCommand;
+        public RelayCommand DoubleCommand
+        {
+            get
+            {
+                return doubleCommand ??
+                  (doubleCommand = new RelayCommand((o) =>
+                  {
+                      MotoView view = new MotoView(SelectedMoto!);
+                      if (view.ShowDialog() == true)
+                      {
+                          ClassMoto moto = view.Moto;
+                          Motos.Add(moto);
+                      }
+                      Records = Motos.Count;
+                  }));
+            }
+        }
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
     }
 }
